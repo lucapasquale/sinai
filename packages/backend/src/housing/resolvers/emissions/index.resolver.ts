@@ -16,7 +16,7 @@ export class HousingEmissionsResolver {
   constructor(private housingService: HousingService) {}
 
   @Query(() => HousingEmissionsResponse)
-  calculateEmissions(@Args('input') input: HousingInput): HousingEmissionsResponse {
+  calculateHousingEmissions(@Args('input') input: HousingInput): HousingEmissionsResponse {
     if (input.residentsCount <= 0) {
       throw new Error('invalid number of residentsCount')
     }

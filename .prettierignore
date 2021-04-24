@@ -1,4 +1,2 @@
-.github
 packages/frontend/src/helpers/graphql/generated.ts
-packages/backend/app.yaml
 packages/backend/src/schema.gql

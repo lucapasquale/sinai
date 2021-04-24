@@ -5,6 +5,7 @@ import { GraphQLModule } from '@nestjs/graphql'
 import { HousingModule } from './housing/housing.module'
 import { CommonModule } from './common/common.module'
 import { Config } from './common/config'
+import { TransportModule } from './transport/transport.module'
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { Config } from './common/config'
 
     CommonModule,
     HousingModule,
+    TransportModule,
   ],
 })
 export class AppModule {}
