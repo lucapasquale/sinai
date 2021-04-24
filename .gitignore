@@ -1,0 +1,8 @@
+.vercel
+node_modules/
+
+dist/
+.next/
+**/.env
+
+packages/backend/prisma/generated/

@@ -1,0 +1,76 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+enum ElectricityUnit {
+  KWh
+}
+
+enum FuelOilUnit {
+  Litres
+}
+
+input HousingElectricityInput {
+  unit: ElectricityUnit!
+  usage: Float!
+}
+
+type HousingEmissionsResponse {
+  amountPerPerson: Float!
+  totalAmount: Float!
+}
+
+input HousingFuelOilInput {
+  unit: FuelOilUnit!
+  usage: Float!
+}
+
+input HousingInput {
+  electricity: HousingElectricityInput
+  fuelOil: HousingFuelOilInput
+  lpg: HousingLpgInput
+  naturalGas: HousingNaturalGasInput
+  residentsCount: Int!
+  waste: HousingWasteInput
+  water: HousingWaterInput
+}
+
+input HousingLpgInput {
+  unit: LpgUnit!
+  usage: Float!
+}
+
+input HousingNaturalGasInput {
+  unit: NaturalGasUnit!
+  usage: Float!
+}
+
+input HousingWasteInput {
+  unit: WasteUnit!
+  usage: Float!
+}
+
+input HousingWaterInput {
+  unit: WaterUnit!
+  usage: Float!
+}
+
+enum LpgUnit {
+  Litres
+}
+
+enum NaturalGasUnit {
+  Therm
+}
+
+type Query {
+  calculateEmissions(input: HousingInput!): HousingEmissionsResponse!
+}
+
+enum WasteUnit {
+  Kg
+}
+
+enum WaterUnit {
+  Litres
+}
