@@ -1,10 +1,6 @@
-import { Field, Float, InputType, registerEnumType } from '@nestjs/graphql'
-
-export enum DistanceUnit {
-  Km,
-  Miles,
-}
-registerEnumType(DistanceUnit, { name: 'DistanceUnit' })
+import { Field, Float, InputType } from '@nestjs/graphql'
+import { ConsumptionUnit } from '~units/enums/consumption-unit.enum'
+import { DistanceUnit } from '~units/enums/distance-unit.enum'
 
 @InputType('TransportEmissionsCarDistanceInput')
 class CarDistanceInput {
@@ -15,26 +11,26 @@ class CarDistanceInput {
   unit: DistanceUnit
 }
 
-export enum CarConsumptionUnit {
-  Mpg,
-  Lper100Km,
-}
-registerEnumType(CarConsumptionUnit, { name: 'CarConsumptionUnit' })
-
 @InputType('TransportEmissionsCarConsumptionInput')
 class CarConsumptionInput {
   @Field(() => Float, { defaultValue: 0 })
   amount: number
 
-  @Field(() => CarConsumptionUnit)
-  unit: CarConsumptionUnit
+  @Field(() => ConsumptionUnit)
+  unit: ConsumptionUnit
 }
 
 @InputType('TransportEmissionsCarInput')
-export class CarInput {
+class CarInput {
   @Field(() => CarDistanceInput)
   distance: CarDistanceInput
 
   @Field(() => CarConsumptionInput)
   consumption: CarConsumptionInput
+}
+
+@InputType('TransportEmissionsInput')
+export class TransportInput {
+  @Field(() => CarInput, { nullable: true })
+  car?: CarInput
 }

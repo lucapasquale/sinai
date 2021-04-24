@@ -9,7 +9,13 @@
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
-    "incremental": true
+    "baseUrl": "./src",
+    "incremental": true,
+    "paths": {
+      "~common/*": ["./common/*"],
+      "~housing/*": ["./housing/*"],
+      "~transport/*": ["./transport/*"],
+      "~units/*": ["./units/*"],
+    }
   }
 }

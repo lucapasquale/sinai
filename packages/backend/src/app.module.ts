@@ -2,10 +2,12 @@ import { join } from 'path'
 import { Module } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { GraphQLModule } from '@nestjs/graphql'
-import { HousingModule } from './housing/housing.module'
-import { CommonModule } from './common/common.module'
-import { Config } from './common/config'
-import { TransportModule } from './transport/transport.module'
+
+import { HousingModule } from '~housing/housing.module'
+import { CommonModule } from '~common/common.module'
+import { Config } from '~common/config'
+import { TransportModule } from '~transport/transport.module'
+import { UnitsModule } from '~units/units.module'
 
 @Module({
   imports: [
@@ -22,6 +24,7 @@ import { TransportModule } from './transport/transport.module'
     CommonModule,
     HousingModule,
     TransportModule,
+    UnitsModule,
   ],
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 import { Resolver, Query, Float, Field, ObjectType, Int, Args } from '@nestjs/graphql'
 import { HousingService } from '../../housing.service'
-import { HousingInput } from './input/index.input'
+import { HousingInput } from './emissions.input'
 
 @ObjectType()
 class HousingEmissionsResponse {

@@ -1,6 +1,6 @@
 import { Resolver, Query, Float, Field, ObjectType, Int, Args } from '@nestjs/graphql'
 import { TransportService } from '../../transport.service'
-import { TransportInput } from './input/index.input'
+import { TransportInput } from './emissions.input'
 
 @ObjectType()
 class TransportEmissionsResponse {
