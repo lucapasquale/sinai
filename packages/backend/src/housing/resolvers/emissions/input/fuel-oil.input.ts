@@ -8,7 +8,7 @@ registerEnumType(FuelOilUnit, { name: 'FuelOilUnit' })
 @InputType()
 export class HousingFuelOilInput {
   @Field(() => Float)
-  usage: number
+  amount: number
 
   @Field(() => FuelOilUnit)
   unit: FuelOilUnit

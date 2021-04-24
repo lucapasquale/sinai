@@ -8,7 +8,7 @@ registerEnumType(WasteUnit, { name: 'WasteUnit' })
 @InputType()
 export class HousingWasteInput {
   @Field(() => Float)
-  usage: number
+  amount: number
 
   @Field(() => WasteUnit)
   unit: WasteUnit

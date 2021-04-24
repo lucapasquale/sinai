@@ -11,7 +11,7 @@ import { WaterUnit } from './resolvers/emissions/input/water.input'
 
 @Injectable()
 export class HousingService {
-  calculateEmissions(input: HousingInput) {
+  calculateEmissions(input: Omit<HousingInput, 'residentsCount'>) {
     const amounts = [
       this.electricityEmissions(input.electricity),
       this.fuelOilEmissions(input.fuelOil),
@@ -35,7 +35,7 @@ export class HousingService {
         const LB_CO2_PER_MWH = 947.2
         const LB_TO_KG = 0.453592
 
-        return electricity.usage * KWH_TO_MWH * LB_CO2_PER_MWH * LB_TO_KG
+        return electricity.amount * KWH_TO_MWH * LB_CO2_PER_MWH * LB_TO_KG
 
       default:
         throw new Error('invalid unit received')
@@ -53,7 +53,7 @@ export class HousingService {
         const MM_BTU_PER_GALLON = 0.139
         const KG_CO2_PER_MM_BTU = 73.25
 
-        return fuelOil.usage * LITERS_TO_GALONS * MM_BTU_PER_GALLON * KG_CO2_PER_MM_BTU
+        return fuelOil.amount * LITERS_TO_GALONS * MM_BTU_PER_GALLON * KG_CO2_PER_MM_BTU
 
       default:
         throw new Error('invalid unit received')
@@ -71,7 +71,7 @@ export class HousingService {
         const MM_BTU_PER_GALLON = 0.092
         const KG_CO2_PER_MM_BTU = 61.71
 
-        return lpg.usage * LITERS_TO_GALONS * MM_BTU_PER_GALLON * KG_CO2_PER_MM_BTU
+        return lpg.amount * LITERS_TO_GALONS * MM_BTU_PER_GALLON * KG_CO2_PER_MM_BTU
 
       default:
         throw new Error('invalid unit received')
@@ -88,13 +88,14 @@ export class HousingService {
         const THERM_TO_MM_BTU = 100
         const KG_CO2_PER_MM_BTU = 53.06
 
-        return naturalGas.usage * THERM_TO_MM_BTU * KG_CO2_PER_MM_BTU
+        return naturalGas.amount * THERM_TO_MM_BTU * KG_CO2_PER_MM_BTU
 
       default:
         throw new Error('invalid unit received')
     }
   }
 
+  // TODO: get waste CO2 emissions
   private wasteEmissions(waste: HousingInput['waste']) {
     if (!waste) {
       return 0
@@ -102,15 +103,16 @@ export class HousingService {
 
     switch (waste.unit) {
       case WasteUnit.Kg:
-        const RANDOM_NUMBER_OF_CO2_KG_PER_KG = 1
+        const CO2_KG_PER_KG = 1
 
-        return waste.usage * RANDOM_NUMBER_OF_CO2_KG_PER_KG
+        return waste.amount * CO2_KG_PER_KG
 
       default:
         throw new Error('invalid unit received')
     }
   }
 
+  // TODO: get water CO2 emissions
   private waterEmissions(water: HousingInput['water']) {
     if (!water) {
       return 0
@@ -118,9 +120,9 @@ export class HousingService {
 
     switch (water.unit) {
       case WaterUnit.Litres:
-        const RANDOM_NUMBER_OF_CO2_KG_PER_LITRES = 1
+        const CO2_KG_PER_LITRES = 1
 
-        return water.usage * RANDOM_NUMBER_OF_CO2_KG_PER_LITRES
+        return water.amount * CO2_KG_PER_LITRES
 
       default:
         throw new Error('invalid unit received')
