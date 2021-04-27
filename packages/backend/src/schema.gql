@@ -2,9 +2,9 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-enum CarConsumptionUnit {
+enum ConsumptionUnit {
   Lper100Km
-  Mpg
+  MPG
 }
 
 enum DistanceUnit {
@@ -12,17 +12,15 @@ enum DistanceUnit {
   Miles
 }
 
-enum ElectricityUnit {
+enum EnergyUnit {
+  BTU
   KWh
-}
-
-enum FuelOilUnit {
-  Litres
+  Therm
 }
 
 input HousingElectricityInput {
   amount: Float!
-  unit: ElectricityUnit!
+  unit: EnergyUnit!
 }
 
 type HousingEmissionsResponse {
@@ -32,7 +30,7 @@ type HousingEmissionsResponse {
 
 input HousingFuelOilInput {
   amount: Float!
-  unit: FuelOilUnit!
+  unit: VolumeUnit!
 }
 
 input HousingInput {
@@ -41,36 +39,16 @@ input HousingInput {
   lpg: HousingLpgInput
   naturalGas: HousingNaturalGasInput
   residentsCount: Int!
-  waste: HousingWasteInput
-  water: HousingWaterInput
 }
 
 input HousingLpgInput {
   amount: Float!
-  unit: LpgUnit!
+  unit: VolumeUnit!
 }
 
 input HousingNaturalGasInput {
   amount: Float!
-  unit: NaturalGasUnit!
-}
-
-input HousingWasteInput {
-  amount: Float!
-  unit: WasteUnit!
-}
-
-input HousingWaterInput {
-  amount: Float!
-  unit: WaterUnit!
-}
-
-enum LpgUnit {
-  Litres
-}
-
-enum NaturalGasUnit {
-  Therm
+  unit: EnergyUnit!
 }
 
 type Query {
@@ -80,7 +58,7 @@ type Query {
 
 input TransportEmissionsCarConsumptionInput {
   amount: Float = 0
-  unit: CarConsumptionUnit!
+  unit: ConsumptionUnit!
 }
 
 input TransportEmissionsCarDistanceInput {
@@ -101,10 +79,7 @@ type TransportEmissionsResponse {
   totalAmount: Float!
 }
 
-enum WasteUnit {
-  Kg
-}
-
-enum WaterUnit {
+enum VolumeUnit {
+  Gallons
   Litres
 }
