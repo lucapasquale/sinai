@@ -5,8 +5,8 @@
     "packages/*"
   ],
   "scripts": {
-    "dev:backend": "yarn workspace backend start:dev",
-    "dev:frontend": "yarn workspace frontend dev"
+    "start:backend": "yarn workspace backend start:dev",
+    "start:frontend": "yarn workspace frontend start"
   },
   "devDependencies": {
     "@types/node": "^14.14.41",

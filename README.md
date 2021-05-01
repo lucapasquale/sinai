@@ -14,3 +14,11 @@ This project uses `yarn workspaces`, with a package for the backend, and one for
  - React
  - Ant Design
  - Apollo Client
+
+## Running the project
+
+First, install all dependencies with `yarn install`. It will install for both packages.
+
+Start the backend by running `yarn start:backend`. It will build and start the NestJS application, running on port 3100.
+
+Then, on a different terminal, start the frontend with `yarn start:frontend`, and it will automatically open a tab on your browser at `http://localhost:3000`
