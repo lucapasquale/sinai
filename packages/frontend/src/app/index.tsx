@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import { Transport } from '../modules/transport'
+import { Housing } from '../modules/housing'
 import { Layout } from './layout'
 
 export const App: FC = () => {
@@ -11,6 +12,10 @@ export const App: FC = () => {
         <Switch>
           <Route exact path="/transport">
             <Transport />
+          </Route>
+
+          <Route exact path="/housing">
+            <Housing />
           </Route>
 
           <Route path="/">

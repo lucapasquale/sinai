@@ -109,6 +109,19 @@ export enum VolumeUnit {
   Litres = 'Litres'
 }
 
+export type CalculateHousingEmissionsQueryVariables = Exact<{
+  input: HousingInput;
+}>;
+
+
+export type CalculateHousingEmissionsQuery = (
+  { __typename?: 'Query' }
+  & { calculateHousingEmissions: (
+    { __typename?: 'HousingEmissionsResponse' }
+    & Pick<HousingEmissionsResponse, 'amountPerPerson' | 'totalAmount'>
+  ) }
+);
+
 export type CalculateTransportEmissionsQueryVariables = Exact<{
   input: TransportEmissionsInput;
 }>;
@@ -123,6 +136,42 @@ export type CalculateTransportEmissionsQuery = (
 );
 
 
+export const CalculateHousingEmissionsDocument = gql`
+    query CalculateHousingEmissions($input: HousingInput!) {
+  calculateHousingEmissions(input: $input) {
+    amountPerPerson
+    totalAmount
+  }
+}
+    `;
+
+/**
+ * __useCalculateHousingEmissionsQuery__
+ *
+ * To run a query within a React component, call `useCalculateHousingEmissionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCalculateHousingEmissionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCalculateHousingEmissionsQuery({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCalculateHousingEmissionsQuery(baseOptions: Apollo.QueryHookOptions<CalculateHousingEmissionsQuery, CalculateHousingEmissionsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CalculateHousingEmissionsQuery, CalculateHousingEmissionsQueryVariables>(CalculateHousingEmissionsDocument, options);
+      }
+export function useCalculateHousingEmissionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CalculateHousingEmissionsQuery, CalculateHousingEmissionsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CalculateHousingEmissionsQuery, CalculateHousingEmissionsQueryVariables>(CalculateHousingEmissionsDocument, options);
+        }
+export type CalculateHousingEmissionsQueryHookResult = ReturnType<typeof useCalculateHousingEmissionsQuery>;
+export type CalculateHousingEmissionsLazyQueryHookResult = ReturnType<typeof useCalculateHousingEmissionsLazyQuery>;
+export type CalculateHousingEmissionsQueryResult = Apollo.QueryResult<CalculateHousingEmissionsQuery, CalculateHousingEmissionsQueryVariables>;
 export const CalculateTransportEmissionsDocument = gql`
     query CalculateTransportEmissions($input: TransportEmissionsInput!) {
   calculateTransportEmissions(input: $input) {

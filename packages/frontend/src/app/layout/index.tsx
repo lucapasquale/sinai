@@ -1,22 +1,11 @@
 import React, { FC } from 'react'
-import { Card, Layout as AntdLayout, Menu } from 'antd'
-import { Link } from 'react-router-dom'
-import './index.css'
+import { Card, Layout as AntdLayout } from 'antd'
+import { Header } from './Header'
 
 export const Layout: FC = ({ children }) => {
   return (
     <AntdLayout className="layout">
-      <AntdLayout.Header>
-        <Menu theme="dark" mode="horizontal">
-          <Menu.Item key="1">
-            <Link to="/">Home</Link>
-          </Menu.Item>
-
-          <Menu.Item key="2">
-            <Link to="/transport">Transportation</Link>
-          </Menu.Item>
-        </Menu>
-      </AntdLayout.Header>
+      <Header />
 
       <AntdLayout.Content style={{ padding: '50px' }}>
         <Card>{children}</Card>
